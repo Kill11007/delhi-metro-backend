@@ -1,6 +1,6 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.repository;
+package com.knackitsolutions.delhimetro.delhimetrobackend.repository;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.entity.Station;
+import com.knackitsolutions.delhimetro.delhimetrobackend.entity.Station;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

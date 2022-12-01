@@ -1,4 +1,4 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.dto;
+package com.knackitsolutions.delhimetro.delhimetrobackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
