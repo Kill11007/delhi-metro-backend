@@ -5,9 +5,9 @@ grant all on *.* to 'delhimetro'@'localhost';
 create table if not exists stations(
     id bigint primary key auto_increment,
     
-    station_id bigint unique,
+    station_id int unique,
     station_name varchar(255) ,
     station_code varchar(10) unique
 );
 
-drop table stations;
+select * from stations;
