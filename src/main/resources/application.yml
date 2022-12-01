@@ -1,0 +1,4 @@
+delhimetro:
+  route:
+    url: https://backend.delhimetrorail.com/api/v2/en/station_route/{from-station-code}/{to-station-code}/least-distance/{leaving-time}
+
