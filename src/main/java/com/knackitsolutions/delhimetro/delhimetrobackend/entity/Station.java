@@ -1,6 +1,6 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.entity;
+package com.knackitsolutions.delhimetro.delhimetrobackend.entity;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.dto.StationResponse;
+import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationResponse;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.config;
+package com.knackitsolutions.delhimetro.delhimetrobackend.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

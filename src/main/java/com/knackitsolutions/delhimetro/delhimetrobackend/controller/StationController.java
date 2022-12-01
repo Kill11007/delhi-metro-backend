@@ -1,8 +1,8 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.controller;
+package com.knackitsolutions.delhimetro.delhimetrobackend.controller;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.dto.StationDTO;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.client.StationClient;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.service.StationService;
+import com.knackitsolutions.delhimetro.delhimetrobackend.client.StationClient;
+import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationDTO;
+import com.knackitsolutions.delhimetro.delhimetrobackend.service.StationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

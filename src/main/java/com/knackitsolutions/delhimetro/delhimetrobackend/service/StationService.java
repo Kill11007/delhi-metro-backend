@@ -1,10 +1,10 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.service;
+package com.knackitsolutions.delhimetro.delhimetrobackend.service;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.dto.StationResponse;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.dto.StationDTO;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.client.StationClient;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.entity.Station;
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.repository.StationRepository;
+import com.knackitsolutions.delhimetro.delhimetrobackend.client.StationClient;
+import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationDTO;
+import com.knackitsolutions.delhimetro.delhimetrobackend.entity.Station;
+import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationResponse;
+import com.knackitsolutions.delhimetro.delhimetrobackend.repository.StationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

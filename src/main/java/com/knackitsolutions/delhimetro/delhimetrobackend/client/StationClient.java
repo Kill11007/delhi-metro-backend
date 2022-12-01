@@ -1,6 +1,6 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.client;
+package com.knackitsolutions.delhimetro.delhimetrobackend.client;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.dto.StationResponse;
+import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

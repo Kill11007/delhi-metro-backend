@@ -1,6 +1,6 @@
-package com.knackitsolutions.delhimetro.delhimetrobackend.model.dto;
+package com.knackitsolutions.delhimetro.delhimetrobackend.dto;
 
-import com.knackitsolutions.delhimetro.delhimetrobackend.model.entity.Station;
+import com.knackitsolutions.delhimetro.delhimetrobackend.entity.Station;
 import lombok.Data;
 
 @Data
