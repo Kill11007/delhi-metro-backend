@@ -7,11 +7,13 @@ import com.knackitsolutions.delhimetro.delhimetrobackend.entity.Station;
 import com.knackitsolutions.delhimetro.delhimetrobackend.entity.StationInfo;
 import com.knackitsolutions.delhimetro.delhimetrobackend.repository.StationInfoRepository;
 import com.knackitsolutions.delhimetro.delhimetrobackend.repository.StationRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -26,33 +28,46 @@ public class StationInfoService {
     private final MetroGateService metroGateService;
     private final PlatformService platformService;
     private final FacilityService facilityService;
+    private final PrevNextService prevNextService;
 
+    @Transactional
     public StationInfoDTO saveStationInfo(String code) {
-        DelhiMetroStationInfoResponse delhiMetroStationInfoResponse = stationInfoClient.infoResponse(code);
-        log.info(delhiMetroStationInfoResponse);
-        StationInfo stationInfo = saveStationInfo(delhiMetroStationInfoResponse);
-//        Optional<Station> station = stationRepository.findById(stationInfo.getId());
-        metroLineService.save(delhiMetroStationInfoResponse.getMetroLines());
-        metroGateService.save(delhiMetroStationInfoResponse.getGatesList(), stationInfo);
-        platformService.save(delhiMetroStationInfoResponse.getPlatformList(), stationInfo);
-        facilityService.saveStationFacility(delhiMetroStationInfoResponse.getStationFacility(), stationInfo);
-        facilityService.saveStationFacilities(delhiMetroStationInfoResponse.getStationFacilities(), stationInfo);
-        return new StationInfoDTO(stationInfo);
+        try {
+            DelhiMetroStationInfoResponse delhiMetroStationInfoResponse = stationInfoClient.infoResponse(code);
+            StationInfo stationInfo = saveStationInfo(delhiMetroStationInfoResponse);
+           // Optional<Station> station = stationRepository.findByStationCode(stationInfo.getStation().getStationCode());
+            metroLineService.save(delhiMetroStationInfoResponse.getMetroLines());
+            metroGateService.save(delhiMetroStationInfoResponse.getGatesList(), stationInfo);
+            platformService.save(delhiMetroStationInfoResponse.getPlatformList(), stationInfo);
+            facilityService.saveStationFacility(delhiMetroStationInfoResponse.getStationFacility(), stationInfo);
+            facilityService.saveStationFacilities(delhiMetroStationInfoResponse.getStationFacilities(), stationInfo);
+            prevNextService.savePrevNextStations(delhiMetroStationInfoResponse.getPreviousNextStations(), stationInfo);
+            return new StationInfoDTO(stationInfo);
+        } catch (Exception e) {
+            log.info(e.toString());
+        }
+        return null;
     }
 
     private StationInfo saveStationInfo(DelhiMetroStationInfoResponse delhiMetroStationInfoResponse) {
         StationInfo stationInfo = new StationInfo(delhiMetroStationInfoResponse);
-        Optional<Station> byStationCode = stationRepository.findByStationCode(delhiMetroStationInfoResponse.getStationCode());
-        if (byStationCode.isEmpty()) {
-            Station station = new Station();
-            station.setStationId(delhiMetroStationInfoResponse.getId());
-            station.setStationCode(delhiMetroStationInfoResponse.getStationCode());
-            station.setStationName(delhiMetroStationInfoResponse.getStationName());
-            Station save = stationRepository.save(station);
-            stationInfo.setStation(save);
+        Optional<StationInfo> stationInfoById = stationInfoRepository.findByStationStationId(delhiMetroStationInfoResponse.getId());
+        if (stationInfoById.isEmpty()) {
+            Optional<Station> byStationCode = stationRepository.findByStationCode(delhiMetroStationInfoResponse.getStationCode());
+            byStationCode.ifPresent(stationInfo::setStation);
+//            if (byStationCode.isPresent()) {
+//                Station station = byStationCode.get();
+//                stationInfo.setStation(station);
+////                station.setStationInfo(stationInfo);
+//            }
         } else {
-            stationInfo.setStation(byStationCode.get());
+            throw new RuntimeException("Data Already Exists");
         }
         return stationInfoRepository.save(stationInfo);
+    }
+
+    public StationInfoDTO get(String word) {
+        Optional<Station> station =stationRepository.findByStationCode(word);
+        return station.map(StationInfoDTO::new).orElseThrow();
     }
 }

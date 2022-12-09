@@ -4,9 +4,7 @@ import com.knackitsolutions.delhimetro.delhimetrobackend.entity.MetroGate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface MetroGateRepository extends JpaRepository<MetroGate,Long> {
-
+    boolean existsByGateCodeAndStationInfoId(String code, Long id);
 }

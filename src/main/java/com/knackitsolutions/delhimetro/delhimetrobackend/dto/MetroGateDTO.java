@@ -1,6 +1,7 @@
 package com.knackitsolutions.delhimetro.delhimetrobackend.dto;
 
 import com.knackitsolutions.delhimetro.delhimetrobackend.entity.MetroGate;
+import com.knackitsolutions.delhimetro.delhimetrobackend.entity.Station;
 import lombok.Data;
 
 @Data
@@ -13,6 +14,7 @@ public class MetroGateDTO {
     private Double gateLatitude;
     private Double gateLongitude;
     private boolean divyangFriendly;
+
 
     public MetroGateDTO(MetroGate metroGate){
         this.id = metroGate.getId();

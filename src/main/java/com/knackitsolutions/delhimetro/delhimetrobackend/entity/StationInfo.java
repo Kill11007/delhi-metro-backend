@@ -1,12 +1,13 @@
 package com.knackitsolutions.delhimetro.delhimetrobackend.entity;
 
 import com.knackitsolutions.delhimetro.delhimetrobackend.dto.DelhiMetroStationInfoResponse;
-import com.knackitsolutions.delhimetro.delhimetrobackend.dto.StationInfoDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.List;
+import java.util.function.Function;
+
 
 @Data
 @Table(name = "station_info")
@@ -15,11 +16,11 @@ import java.util.List;
 
 public class StationInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JoinColumn(name = "id", referencedColumnName = "stationId")
-    @OneToOne
+    @JoinColumn(name = "id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId
+    @ToString.Exclude
     private Station station;
     private boolean interchange;
     private double latitude;
@@ -30,29 +31,17 @@ public class StationInfo {
     private double xCoords;
     private double yCoords;
 
-
-
-
-    @OneToMany(mappedBy = "nextStation")
-    private List<PrevNextStation> nextStations;
-
-    @OneToMany(mappedBy = "prevStation")
-    private List<PrevNextStation> prevStations;
-
-    @OneToMany(mappedBy = "station")
-    private List<PrevNextStation> stations;
-
-
-
     public StationInfo(DelhiMetroStationInfoResponse response) {
+        Function<String, Double> trimThenParse = s -> Double.parseDouble(s.trim());
         setInterchange(response.getInterchange());
-        setLatitude(response.getLatitude());
-        setLongitude(response.getLongitude());
+//        setLatitude(trimThenParse.apply(response.getLatitude().substring(1)));
+        setLatitude(trimThenParse.apply(response.getLatitude()));
+        setLongitude(trimThenParse.apply(response.getLongitude()));
         setMobile(response.getMobile());
         setLandline(response.getLandline());
         setStationType(response.getStationType());
-        setXCoords(response.getXCoords());
-        setYCoords(response.getYCoords());
+        setXCoords(trimThenParse.apply(response.getXCoords()));
+        setYCoords(trimThenParse.apply(response.getYCoords()));
     }
 
 }

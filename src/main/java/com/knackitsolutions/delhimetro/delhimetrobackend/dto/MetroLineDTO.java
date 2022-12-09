@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 public class MetroLineDTO {
+
+    private Long id;
     private Integer lineId;
     private String name;
     private String status;
@@ -18,6 +20,7 @@ public class MetroLineDTO {
     private String endStation;
 
     public MetroLineDTO(MetroLine metroLine){
+        this.id = metroLine.getId();
         this.lineId = metroLine.getLineId();
         this.name = metroLine.getName();
         this.status = metroLine.getStatus();

@@ -3,6 +3,7 @@ package com.knackitsolutions.delhimetro.delhimetrobackend.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,12 +33,12 @@ public class DelhiMetroStationInfoResponse {
      @JsonProperty("station_type")
      private String stationType;
      private Boolean interchange;
-     private double latitude;
-     private double longitude;
+     private String latitude;
+     private String longitude;
      @JsonProperty("x_coords")
-     private double xCoords;
+     private String xCoords;
      @JsonProperty("y_coords")
-     private double yCoords;
+     private String yCoords;
      private String mobile;
      private String landline;
      @JsonProperty("station_facility")
@@ -96,7 +97,7 @@ public class DelhiMetroStationInfoResponse {
      @JsonIgnoreProperties(ignoreUnknown = true)
      public static class Line{
           @JsonProperty("line_id")
-          private String lineId;
+          private Integer lineId;
           @JsonProperty("prev_station")
           private Station previousStation;
           @JsonProperty("next_station")

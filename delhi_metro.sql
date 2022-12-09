@@ -24,10 +24,9 @@ create table if not exists station_info(
     y_coords double
 );
 select * from station_info;
-delete  from station_info;
-ALTER TABLE station_info
-add foreign key(id) references stations(id);
-drop table station_info;
+
+
+
 
 
 create table metro_lines(
@@ -47,8 +46,7 @@ create table metro_lines(
     foreign key(end_station) references stations(id)
 );
 select * from metro_lines;
-delete from metro_lines;
--- drop table metro_lines; 
+
 create table metro_gates(
 	id bigint primary key auto_increment,
 	location varchar(255),
@@ -61,8 +59,9 @@ create table metro_gates(
     station_id bigint,
     foreign key(station_id) references stations(id)
 );
+ALTER TABLE `metro_gates` ADD UNIQUE `unique_index`(`station_id`, `gate_code`);
 select * from metro_gates;
-delete from metro_gates;
+
 create table platforms(
 	id bigint primary key auto_increment,
 	platform_names varchar(255),
@@ -74,9 +73,10 @@ create table platforms(
     station_id bigint,
     foreign key(station_id) references stations(id)
 );
+ALTER TABLE `platforms` ADD UNIQUE `unique_index`(`platform_code`, `station_id`);
 select * from platforms;
-delete from platforms;
-drop table platforms;
+
+
 
 create table station_facilities(
 	id bigint primary key auto_increment,
@@ -85,23 +85,39 @@ create table station_facilities(
     facility_id bigint,
     foreign key(facility_id) references facilities(id)
 );
+ALTER TABLE `station_facilities` ADD UNIQUE `unique_index`(`station_id`, `facility_id`);
 select * from station_facilities;
-delete from station_facilities;
+
 create table facilities(
 	id bigint primary key auto_increment,
     kind varchar(100) unique,
     image varchar(255)
 );
 select * from facilities;
-delete from facilities;
+
 create table prev_next_stations(
 	id bigint primary key auto_increment,
     line_id bigint,
-    foreign key(line_id) references metro_lines(line_id),
+    foreign key(line_id) references metro_lines(id),
     prev_station bigint,
-    foreign key(prev_station) references station_info(id),
+    foreign key(prev_station) references stations(id),
     next_station bigint,
-    foreign key(next_station) references station_info(id),
+    foreign key(next_station) references stations(id),
 	station_id bigint,
-    foreign key(station_id) references station_info(id)
+    foreign key(station_id) references stations(id)
 );
+ALTER TABLE `prev_next_stations` ADD UNIQUE `unique_index`(`line_id`, `prev_station`, `next_station`, `station_id`);
+select * from prev_next_stations;
+
+SET SQL_SAFE_UPDATES = 0;
+delete  from station_info;
+delete from metro_lines;
+delete from metro_gates;
+delete from platforms;
+delete from station_facilities;
+delete from facilities;
+delete from prev_next_stations;
+
+select * from station_info;
+select * from stations;
+select * from metro_lines;

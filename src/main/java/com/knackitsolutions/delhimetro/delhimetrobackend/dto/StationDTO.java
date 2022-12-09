@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class StationDTO {
-    private long id;
+    private Long id;
     private int stationId;
     private String stationName;
     private String stationCode;

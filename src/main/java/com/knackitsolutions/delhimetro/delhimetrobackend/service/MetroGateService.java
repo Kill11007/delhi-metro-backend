@@ -24,9 +24,12 @@ public class MetroGateService {
         List<MetroGate> savedMetroGates = new ArrayList<>();
         Optional<Station> station = stationRepository.findById(stationInfo.getId());
         for (DelhiMetroStationInfoResponse.MetroGates gate : metroGates) {
-            MetroGate metroGate = new MetroGate(gate);
-            station.ifPresent(metroGate::setStationInfo);
-            savedMetroGates.add(metroGateRepository.save(metroGate));
+            if (!metroGateRepository.existsByGateCodeAndStationInfoId(gate.getGateCode(), stationInfo.getId())) {
+                MetroGate metroGate = new MetroGate(gate);
+                station.ifPresent(metroGate::setStationInfo);
+                savedMetroGates.add(metroGateRepository.save(metroGate));
+            }
+
         }
         return savedMetroGates;
     }

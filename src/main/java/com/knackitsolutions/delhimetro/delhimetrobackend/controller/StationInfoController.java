@@ -16,12 +16,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class StationInfoController {
     private final StationInfoService stationInfoService;
-    private final StationInfoClient stationInfoClient;
+
     @GetMapping("/{word}")
     public ResponseEntity<StationInfoDTO> getInfo(@PathVariable String word){
         StationInfoDTO stationInfo = stationInfoService.saveStationInfo(word);
         return ResponseEntity.ok(stationInfo);
     }
-
+    @GetMapping("/{word}/word")
+    public ResponseEntity<StationInfoDTO> getAll(@PathVariable String word){
+        StationInfoDTO stationInfoDTO = stationInfoService.get(word);
+        return ResponseEntity.ok(stationInfoDTO);
+    }
 
 }
