@@ -30,7 +30,7 @@ public class SearchRouteController {
     return ResponseEntity.ok(delhiMetroRouteResponse);
   }
 
-  @GetMapping("/{start}")
+  @GetMapping("/stations/{start}")
   public ResponseEntity<List<StationDTO>> get(@PathVariable String start){
     List<StationDTO> list = stationsService.get(start);
     return ResponseEntity.ok(list);
