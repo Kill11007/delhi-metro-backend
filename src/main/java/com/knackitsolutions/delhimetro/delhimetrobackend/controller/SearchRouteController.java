@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping
+@RequestMapping("/delhi-metro-backend")
 @RequiredArgsConstructor
 public class SearchRouteController {
 
@@ -36,8 +36,4 @@ public class SearchRouteController {
     return ResponseEntity.ok(list);
   }
 
-  @GetMapping("/")
-  public ResponseEntity<?> get() {
-    return ResponseEntity.ok().build();
-  }
 }
