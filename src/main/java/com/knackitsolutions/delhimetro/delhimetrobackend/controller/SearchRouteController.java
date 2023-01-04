@@ -35,4 +35,9 @@ public class SearchRouteController {
     List<StationDTO> list = stationsService.get(start);
     return ResponseEntity.ok(list);
   }
+
+  @GetMapping
+  public ResponseEntity<?> get() {
+    return ResponseEntity.ok().build();
+  }
 }
