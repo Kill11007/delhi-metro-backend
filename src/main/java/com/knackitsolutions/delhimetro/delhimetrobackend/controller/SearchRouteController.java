@@ -36,7 +36,7 @@ public class SearchRouteController {
     return ResponseEntity.ok(list);
   }
 
-  @GetMapping
+  @GetMapping("/")
   public ResponseEntity<?> get() {
     return ResponseEntity.ok().build();
   }
