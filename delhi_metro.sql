@@ -110,13 +110,7 @@ ALTER TABLE `prev_next_stations` ADD UNIQUE `unique_index`(`line_id`, `prev_stat
 select * from prev_next_stations;
 
 SET SQL_SAFE_UPDATES = 0;
-delete  from station_info;
-delete from metro_lines;
-delete from metro_gates;
-delete from platforms;
-delete from station_facilities;
-delete from facilities;
-delete from prev_next_stations;
+
 
 select * from station_info;
 select * from stations;
