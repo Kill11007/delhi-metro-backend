@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StationResponse {
-    private int id;
+    private Integer id;
     @JsonProperty("station_name")
     private String name;
     @JsonProperty("station_code")

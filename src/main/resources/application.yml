@@ -8,3 +8,5 @@ delhimetro:
     url: https://backend.delhimetrorail.com/api/v2/en/station_route/{from-station-code}/{to-station-code}/least-distance/{leaving-time}
   stations:
     url: https://backend.delhimetrorail.com/api/v2/en/station_by_keyword/all/{letter}
+  station-info:
+    url: https://backend.delhimetrorail.com/api/v2/en/station/{word}
