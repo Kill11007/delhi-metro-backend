@@ -1,3 +1,6 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
 server:
   port: 5000
 delhimetro:
