@@ -38,7 +38,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECURITY_ACCESS_KEY }}
           application_name: delhi-metro-backend-test
-          environment_name: delhi-metro-backend-test-env
+          environment_name: Delhimetrobackendtest-env
           version_label: ${{ github.SHA }}
           region: ap-northeast-1
           deployment_package: delhi-metro-backend-0.0.1-SNAPSHOT.jar
