@@ -21,4 +21,9 @@ public class StationController {
         List<StationDTO> list = stationsService.get(start);
         return ResponseEntity.ok(list);
     }
+    @GetMapping
+    public ResponseEntity<List<StationDTO>> getAll(){
+        List<StationDTO> list = stationsService.getAll();
+        return ResponseEntity.ok(list);
+    }
 }

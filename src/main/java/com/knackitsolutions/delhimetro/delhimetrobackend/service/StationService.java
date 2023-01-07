@@ -75,4 +75,7 @@ public class StationService {
     }
 
 
+    public List<StationDTO> getAll() {
+        return stationRepository.findAll().stream().map(StationDTO::new).toList();
+    }
 }
