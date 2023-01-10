@@ -44,8 +44,10 @@ public class StationInfoDTO  {
             PrevNextStationDTO dto = new PrevNextStationDTO();
             MetroLineDTO metroLineDTO = new MetroLineDTO(entity.getMetroLine());
             Station nextStation = entity.getNextStation();
-            StationDTO stationDTO = new StationDTO(nextStation);
-            dto.setNextStation(stationDTO);
+            if (nextStation != null){
+                StationDTO stationDTO = new StationDTO(nextStation);
+                dto.setNextStation(stationDTO);
+            }
             dto.setMetroLineDTO(metroLineDTO);
             prevNextStationDTO.add(dto);
         }
@@ -56,8 +58,6 @@ public class StationInfoDTO  {
             if (first.isPresent()) {
                 PrevNextStationDTO prevNextStationDTO1 = first.get();
                 Optional.ofNullable(entity.getPrevStation()).map(StationDTO::new).ifPresent(prevNextStationDTO1::setPreviousStation);
-
-//                prevNextStationDTO1.setPreviousStation(new StationDTO(entity.getPrevStation()));
             }
         }
         this.platformDTO = new ArrayList<>();

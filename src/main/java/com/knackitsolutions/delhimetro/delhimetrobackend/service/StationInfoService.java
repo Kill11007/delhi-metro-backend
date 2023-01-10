@@ -67,7 +67,8 @@ public class StationInfoService {
     }
 
     public StationInfoDTO get(String word) {
-        Optional<Station> station =stationRepository.findByStationCode(word);
+        log.info("Get Station Info for code: {}", word);
+        Optional<Station> station = stationRepository.findByStationCode(word);
         return station.map(StationInfoDTO::new).orElseThrow();
     }
 }
