@@ -1,6 +1,7 @@
 package com.knackitsolutions.delhimetro.delhimetrobackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.knackitsolutions.delhimetro.delhimetrobackend.entity.StationInfo;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,7 @@ public class DelhiMetroRouteResponse {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder
-  private static class Route{
+  public static class Route{
     private String line;
     @JsonProperty("line_no")
     private Integer lineNo;
@@ -61,9 +62,18 @@ public class DelhiMetroRouteResponse {
   }
 
   @Data
-  private static class Path{
+  public static class Path{
     private String name;
     private String status;
+    private String code;
+    private double latitude;
+    private double longitude;
+
+    public void update(StationInfo stationInfo) {
+      setCode(stationInfo.getStation().getStationCode());
+      setLatitude(stationInfo.getLatitude());
+      setLongitude(stationInfo.getLongitude());
+    }
   }
 
 }
